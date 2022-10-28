@@ -7,16 +7,13 @@ iothub:
 
 logger:
     console:
-        level: DEBUG
-
-extractor:
-    data_set_external_id: iot_hub_edge
+        level: INFO
 
 cognite:
     # Read these from environment variables
     host: ${COGNITE_BASE_URL}
     project: ${COGNITE_PROJECT}
-
+    data_set_external_id: iot_hub_edge
     idp-authentication:
         tenant: ${COGNITE_TENANT_ID}
         client-id: ${COGNITE_CLIENT_ID}

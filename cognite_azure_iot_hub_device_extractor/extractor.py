@@ -230,8 +230,8 @@ def run_extractor(client: CogniteClient, states: AbstractStateStore, config: Con
         )
 
     data_set_id = (
-        client.data_sets.retrieve(external_id=config.extractor.data_set_external_id)
-        if config.extractor.data_set_external_id
+        client.data_sets.retrieve(external_id=config.cognite.data_set_external_id).id
+        if config.cognite.data_set_external_id
         else None
     )
 
@@ -311,6 +311,6 @@ def run_extractor(client: CogniteClient, states: AbstractStateStore, config: Con
         update_relationships(client, relationships)
         update_assets(client, assets, parent_external_id=[iothub_client.iothub_namespace])
 
-        sleep_time = 60.0 - ((time.time() - starttime) % config.iothub.update_interval)
+        sleep_time = config.iothub.update_interval - ((time.time() - starttime) % config.iothub.update_interval)
         logging.info(f"Sleeping for {sleep_time} seconds")
         time.sleep(sleep_time)  #
