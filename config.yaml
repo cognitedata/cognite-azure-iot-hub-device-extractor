@@ -1,0 +1,25 @@
+type: local
+
+iothub:
+    connection_string: ${IOTHUB_CONNECTION_STRING}
+    update-interval: 60
+
+
+logger:
+    console:
+        level: DEBUG
+
+extractor:
+    data_set_external_id: iot_hub_edge
+
+cognite:
+    # Read these from environment variables
+    host: ${COGNITE_BASE_URL}
+    project: ${COGNITE_PROJECT}
+
+    idp-authentication:
+        tenant: ${COGNITE_TENANT_ID}
+        client-id: ${COGNITE_CLIENT_ID}
+        secret: ${COGNITE_CLIENT_SECRET}
+        scopes:
+            - ${COGNITE_BASE_URL}/.default
